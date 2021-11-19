@@ -1,0 +1,77 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#container{
+  position: absolute;
+  margin-top: 90px;
+  margin-left: 30%;
+  height: 300px;
+  width: 500px;
+  border: solid 1px black;
+}
+
+
+#box{
+  position: relative;
+  height: 25px;
+  width: 25px;
+  border-radius: 3rem;
+  background: red;
+  transition-duration: 3s;
+  /*
+  boule a : y = 209 x = 170 / boule b : y = 200 x = 150
+  */
+}
+
+#box2{
+  position: relative;
+  height: 25px;
+  width: 25px;
+  border-radius: 3rem;
+  background: blue;
+  transition-duration: 3s;
+}
+
+
+.content button{
+  position: absolute;
+  top:22vh;
+  left:70vw;
+  outline: none; !important;
+}
+
+#addInfectedPerson{
+  position: absolute;
+  top:33vh;
+  left:70vw;
+  outline: none; !important;
+}
+
+#removePerson{
+  position: absolute;
+  top:45vh;
+  left:70vw;
+  outline: none; !important;
+}
+
+*:focus {
+  outline: 0 !important;
+}
+
+h1{
+  position: relative;
+  top: 5vh;
+  font-family: "Roboto Light";
+  text-align: center;
+}
+
+.chart{
+  position: relative;
+  margin-top: 80vh;
+  margin-left: 28vw;
+  width: 40vw;
+  height: 40vh;
+}
