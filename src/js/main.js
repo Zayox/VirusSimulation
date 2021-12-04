@@ -7,15 +7,17 @@ let removePersonBtn = document.getElementById("removePerson");
 export let healthyCount = 0;
 let infectedCount = 0;
 var array = [];
+let ax,ay;
+let bx,by;
 
 
 function createElem(){
   let div = document.createElement("div");
   //div.style.transitionDuration = 4 + "s";
   div.style.position = "absolute";
-  div.style.top = 50 + "%";
-  div.style.left = 50 + "%";
-  div.style.transform = "translate(" + (-50) +"%," + (-50) + "%)";
+  //div.style.top = 50 + "%";
+  //div.style.left = 50 + "%";
+  //div.style.transform = "translate(" + (-50) +"%," + (-50) + "%)";
   div.style.height = 25 + "px";
   div.style.width = 25 + "px";
   div.style.borderRadius = 3 + "rem";
@@ -32,7 +34,7 @@ function createElem(){
 
 function createElemInfected(){
   let div = document.createElement("div");
-  div.style.transitionDuration = 4 + "s";
+  //div.style.transitionDuration = 4 + "s";
   div.style.position = "absolute";
   div.style.height = 25 + "px";
   div.style.width = 25 + "px";
@@ -49,17 +51,15 @@ function createElemInfected(){
 
 function randomMovement(div){
 
-        setInterval(function(){
-          let randomNumber = Math.random()*270;
-          let randomNumber2 = Math.random()*500;
+  setInterval(function(){
+    let randomNumber = Math.random()*270;
+    let randomNumber2 = Math.random()*500;
 
-          while (div.style.top !== randomNumber && div.style.left !== randomNumber2){
-            div.style.top = div.style.top+1 + "px";
-            div.style.left = div.style.top+1 + "px";
-          }
+    collision();
 
-          collision();
-        },1500)
+    div.style.top = randomNumber + "px";
+    div.style.left = randomNumber2 + "px";
+  },1500)
 
 
 }
@@ -70,17 +70,25 @@ function getDistance(x1,x2,y1,y2){
         let xDist = x2 - x1;
         let yDist = y2 - y1;
 
-        return Math.sqrt(Math.pow(xDist,2) + Math.pow(yDist,2))
+        console.log(x1 + " " + x2 + " " + y1 + " " + y2);
+
+        return Math.sqrt(Math.pow(xDist,2) + Math.pow(yDist,2));
 }
 
 function collision(){
-  if (array.length >= 2){
-    console.log(array[0].style.left + " " + array[0].style.top + " " + array[1].style.left + " " + array[1].style.top)
 
-    if (getDistance(array[0].style.left, array[0].style.top, array[1].style.left, array[1].style.top) < 50) {
-      array[0].style.backgroundColor = "red";
-      array[1].style.backgroundColor = "red";
-    }
+
+  if (array.length >= 2){
+
+    //console.log(parseInt(array[0].style.left) + " " + parseInt(array[1].style.left)+ " " + parseInt(array[0].style.top)+ " " + parseInt(array[1].style.left));
+
+    setTimeout(() => {
+      if (getDistance(parseInt(array[0].style.left), parseInt(array[1].style.left), parseInt(array[0].style.top), parseInt(array[1].style.left)) < 50) {
+        array[0].style.backgroundColor = "red";
+        array[1].style.backgroundColor = "red";
+      }
+    },1000)
+
   }
 }
 
@@ -112,6 +120,7 @@ addInfectedPersonBtn.addEventListener("click", function(){
 removePersonBtn.addEventListener("click", function(){
   healthyCount--;
   container.removeChild(container.lastElementChild);
+  array.pop();
 })
 
 
