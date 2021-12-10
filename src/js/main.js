@@ -22,7 +22,7 @@ function createElem(){
   div.style.width = 25 + "px";
   div.style.borderRadius = 3 + "rem";
   div.style.background = "green";
-  document.getElementById("container").appendChild(div);
+  container.appendChild(div);
 
   healthyCount++;
 
@@ -52,8 +52,8 @@ function createElemInfected(){
 function randomMovement(div){
 
   setInterval(function(){
-    let randomNumber = Math.random()*270;
-    let randomNumber2 = Math.random()*500;
+    let randomNumber = Math.random()*254;
+    let randomNumber2 = Math.random()*450;
 
     collision();
 
@@ -64,6 +64,10 @@ function randomMovement(div){
 
 }
 
+
+//dernier screen calcul inférieur à 50 mais pourtant les positions sont loin de se toucher
+// donc essayer avec un autre calcul inférieur à 50, placer les points correspondant aux coordonnées et voir s'ils se touchent ou pas
+// sinon c'est que problème dans la formule wtf?
 
 function getDistance(x1,x2,y1,y2){
 
@@ -78,18 +82,18 @@ function getDistance(x1,x2,y1,y2){
 function collision(){
 
 
-  if (array.length >= 2){
-
     //console.log(parseInt(array[0].style.left) + " " + parseInt(array[1].style.left)+ " " + parseInt(array[0].style.top)+ " " + parseInt(array[1].style.left));
 
     setTimeout(() => {
-      if (getDistance(parseInt(array[0].style.left), parseInt(array[1].style.left), parseInt(array[0].style.top), parseInt(array[1].style.left)) < 50) {
-        array[0].style.backgroundColor = "red";
-        array[1].style.backgroundColor = "red";
+      if (array.length >= 2){
+            if (getDistance(parseInt(array[0].style.left), parseInt(array[1].style.left), parseInt(array[0].style.top), parseInt(array[1].style.left)) < 50) {
+              array[0].style.backgroundColor = "red";
+              array[1].style.backgroundColor = "red";
+            }
       }
     },1000)
 
-  }
+
 }
 
 /*

@@ -4,13 +4,31 @@
   box-sizing: border-box;
 }
 
+body{
+  background: url("../img/Hologram_Planet_by_nuva.gif");
+}
+
+.block1{
+  position: absolute;
+  top: 30vh;
+  left: 7vw;
+  height: 500px;
+  width: 1600px;
+  opacity: 80%;
+  border-radius: 2rem;
+  background: linear-gradient(to right bottom, #171717, #171717);
+  box-shadow: 5px 5px 5px rgba(148, 147, 147, 0.3);
+}
+
+
 #container{
   position: absolute;
   margin-top: 90px;
   margin-left: 30%;
   height: 300px;
   width: 500px;
-  border: solid 1px black;
+  border: solid 6px #ffffff;
+  border-radius: 1rem;
 }
 
 
@@ -38,21 +56,21 @@
 
 .content button{
   position: absolute;
-  top:22vh;
+  top:13vh;
   left:70vw;
   outline: none !important;
 }
 
 #addInfectedPerson{
   position: absolute;
-  top:33vh;
+  top:23vh;
   left:70vw;
   outline: none !important;
 }
 
 #removePerson{
   position: absolute;
-  top:45vh;
+  top:33vh;
   left:70vw;
   outline: none !important;
 }
@@ -66,6 +84,8 @@ h1{
   top: 5vh;
   font-family: "Roboto Light";
   text-align: center;
+  font-size: 50px !important;
+  color: #fff;
 }
 
 .chart{
