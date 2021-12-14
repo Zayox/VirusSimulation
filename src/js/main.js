@@ -11,7 +11,7 @@ let ax,ay;
 let bx,by;
 var id = 0;
 var bool = false;
-
+let transmitionRate;
 
 
 function createElem(){
@@ -28,6 +28,10 @@ function createElem(){
   div.style.background = "radial-gradient(circle at "+8+"px "+8+"px, green, #000";
   div.id = id;
   id++;
+
+  transmitionRate = Math.floor(Math.random()*9);
+  console.log(transmitionRate);
+
   //console.log(parseInt(div.id));
 
   container.appendChild(div);
@@ -52,7 +56,8 @@ function createElemInfected(){
   div.style.background = "red";
   document.getElementById("container").appendChild(div);
   div.style.background = "radial-gradient(circle at "+8+"px "+8+"px, red, #000";
-
+  transmitionRate = Math.floor(Math.random()*9);
+  console.log(transmitionRate);
 
   array.push(div);
 
@@ -110,9 +115,11 @@ function randomMovement(div) {
           for (let i = 0; i < array.length; i++) {
             if(e.id !== array[i].id){
               if (getDistance(parseInt(e.style.left), parseInt(array[i].style.left), parseInt(e.style.top), parseInt(array[i].style.top)) < 25 && (e.style.background !== array[i].style.background)) {
-                array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-                e.style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-                healthyCount--;
+                if(transmitionRate < 5 ){
+                  array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+                  e.style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+                  healthyCount--;
+                }
               }
             }
           }
