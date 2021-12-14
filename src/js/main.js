@@ -9,6 +9,8 @@ let infectedCount = 0;
 var array = [];
 let ax,ay;
 let bx,by;
+var id = 0;
+var bool = false;
 
 
 
@@ -24,7 +26,9 @@ function createElem(){
   div.style.borderRadius = 3 + "rem";
   div.style.background = "green";
   div.style.background = "radial-gradient(circle at "+8+"px "+8+"px, green, #000";
-
+  div.id = id;
+  id++;
+  //console.log(parseInt(div.id));
 
   container.appendChild(div);
 
@@ -59,26 +63,29 @@ function createElemInfected(){
 
 function randomMovement(div) {
 
-  console.log(div.style.background)
+  //console.log(div.style.background)
 
   let randomNumber = Math.floor(Math.random() * 265);
   let randomNumber2 = Math.floor(Math.random() * 465);
 
-  setInterval(() => {
-    if(parseInt(div.style.top) !== randomNumber) {
+  const interval = setInterval(() => {
+    if(parseInt(div.style.top) < randomNumber) {
       div.style.top = parseInt(div.style.top) + 1 + "px";
       collision();
     }
-    if(parseInt(div.style.left) !== randomNumber2){
-      div.style.left = parseInt(div.style.left) + 1 + "px"
+    if(parseInt(div.style.left) < randomNumber2){
+      div.style.left = parseInt(div.style.left) + 1 + "px";
       collision();
     }
+    /*
+    else {
+      clearInterval(interval);
+      randomNumber = 0;
+      randomNumber2 = 0;
+      randomMovement(div);
+    }
+    */
   },10)
-
-
-
-
-
 
 
   }
@@ -90,7 +97,7 @@ function randomMovement(div) {
     let xDist = x2 - x1;
     let yDist = y2 - y1;
 
-    console.log(x1 + " " + x2 + " " + y1 + " " + y2);
+    //console.log(x1 + " " + x2 + " " + y1 + " " + y2);
 
     return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
   }
@@ -98,6 +105,22 @@ function randomMovement(div) {
   function collision() {
 
   //setTimout le tmps que tout se place
+    if (array.length >= 2) {
+    array.map(e => {
+          for (let i = 0; i < array.length; i++) {
+            if(e.id !== array[i].id){
+              if (getDistance(parseInt(e.style.left), parseInt(array[i].style.left), parseInt(e.style.top), parseInt(array[i].style.top)) < 25 && (e.style.background !== array[i].style.background)) {
+                array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+                e.style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+                healthyCount--;
+              }
+            }
+          }
+        }
+    )
+    }
+
+    /*
   for(let i=1; i<array.length;i++){
 
     let lastElem = array.length;
@@ -109,6 +132,8 @@ function randomMovement(div) {
       }
     }
   }
+  */
+
 
 
 /*
