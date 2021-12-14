@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
         <ChartC />
-        <Mater className="mater" />
-    </div>
 
+    </div>
+// <Mater className="mater" /> not now
   );
 }
 
