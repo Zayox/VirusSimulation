@@ -28,7 +28,7 @@ const ChartC = () => {
                 label: "Safe Person",
                 fill: true,
                 backgroundColor: "#abf389",
-
+                tension: 0.2,
             },
         ],
     };

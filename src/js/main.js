@@ -29,9 +29,6 @@ function createElem(){
   div.id = id;
   id++;
 
-  transmitionRate = Math.floor(Math.random()*9);
-  console.log(transmitionRate);
-
   //console.log(parseInt(div.id));
 
   container.appendChild(div);
@@ -56,8 +53,6 @@ function createElemInfected(){
   div.style.background = "red";
   document.getElementById("container").appendChild(div);
   div.style.background = "radial-gradient(circle at "+8+"px "+8+"px, red, #000";
-  transmitionRate = Math.floor(Math.random()*9);
-  console.log(transmitionRate);
 
   array.push(div);
 
@@ -82,109 +77,110 @@ function randomMovement(div) {
       div.style.left = parseInt(div.style.left) + 1 + "px";
       collision();
     }
-    /*
+
+    else if(parseInt(div.style.top) > randomNumber) {
+      div.style.top = parseInt(div.style.top) - 1 + "px";
+      collision();
+    }
+
+    else if(parseInt(div.style.left) > randomNumber2){
+      div.style.left = parseInt(div.style.left) - 1 + "px";
+      collision();
+    }
+
     else {
       clearInterval(interval);
       randomNumber = 0;
       randomNumber2 = 0;
       randomMovement(div);
     }
-    */
+
   },10)
 
 
-  }
+}
 
 
 
-  function getDistance(x1, x2, y1, y2) {
+function getDistance(x1, x2, y1, y2) {
 
-    let xDist = x2 - x1;
-    let yDist = y2 - y1;
+  let xDist = x2 - x1;
+  let yDist = y2 - y1;
 
-    //console.log(x1 + " " + x2 + " " + y1 + " " + y2);
+  //console.log(x1 + " " + x2 + " " + y1 + " " + y2);
 
-    return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
-  }
+  return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
+}
 
-  function collision() {
+function collision() {
 
   //setTimout le tmps que tout se place
-    if (array.length >= 2) {
+  if (array.length >= 2) {
     array.map(e => {
           for (let i = 0; i < array.length; i++) {
             if(e.id !== array[i].id){
               if (getDistance(parseInt(e.style.left), parseInt(array[i].style.left), parseInt(e.style.top), parseInt(array[i].style.top)) < 25 && (e.style.background !== array[i].style.background)) {
-                if(transmitionRate < 5 ){
-                  array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-                  e.style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-                  healthyCount--;
-                }
+                array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+                e.style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+                healthyCount--;
               }
             }
           }
         }
     )
-    }
-
-    /*
-  for(let i=1; i<array.length;i++){
-
-    let lastElem = array.length;
-
-    if (array.length >= 2) {
-      if (getDistance(parseInt(array[lastElem-1].style.left), parseInt(array[i].style.left), parseInt(array[lastElem-1].style.top), parseInt(array[i].style.top)) < 25) {
-        array[lastElem-1].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-        array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-      }
-    }
-  }
-  */
-
-
-
-/*
-    setTimeout(() => {
-      if (array.length >= 2) {
-        if (getDistance(parseInt(array[0].style.left), parseInt(array[1].style.left), parseInt(array[0].style.top), parseInt(array[1].style.top)) < 25) {
-          array[0].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-          array[1].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-        }
-      }
-    }, 1000)
-*/
-
   }
 
   /*
-    let xDist = x2 - x2;
-    let yDist = y2 - y1;
+for(let i=1; i<array.length;i++){
+  let lastElem = array.length;
+  if (array.length >= 2) {
+    if (getDistance(parseInt(array[lastElem-1].style.left), parseInt(array[i].style.left), parseInt(array[lastElem-1].style.top), parseInt(array[i].style.top)) < 25) {
+      array[lastElem-1].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+      array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+    }
+  }
+}
+*/
 
-    return Math.sqrt(Math.pow(xDistance,2) + Math.pow(yDistance,2));
 
 
-    if (getDistance(circle1.x, circle1.y, circle2.x, circle2.y)< circle1.radius + circle2.radius){
-      circle.color = 'red';
-      }
-      else{
-        circle.color = 'black';
+  /*
+      setTimeout(() => {
+        if (array.length >= 2) {
+          if (getDistance(parseInt(array[0].style.left), parseInt(array[1].style.left), parseInt(array[0].style.top), parseInt(array[1].style.top)) < 25) {
+            array[0].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+            array[1].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+          }
         }
+      }, 1000)
   */
 
+}
 
-  addPersonBtn.addEventListener("click", function () {
-    createElem();
-  })
-
-
-  addInfectedPersonBtn.addEventListener("click", function () {
-    createElemInfected();
-  })
-
-  removePersonBtn.addEventListener("click", function () {
-    healthyCount--;
-    container.removeChild(container.lastElementChild);
-    array.pop();
-  })
+/*
+  let xDist = x2 - x2;
+  let yDist = y2 - y1;
+  return Math.sqrt(Math.pow(xDistance,2) + Math.pow(yDistance,2));
+  if (getDistance(circle1.x, circle1.y, circle2.x, circle2.y)< circle1.radius + circle2.radius){
+    circle.color = 'red';
+    }
+    else{
+      circle.color = 'black';
+      }
+*/
 
 
+addPersonBtn.addEventListener("click", function () {
+  createElem();
+})
+
+
+addInfectedPersonBtn.addEventListener("click", function () {
+  createElemInfected();
+})
+
+removePersonBtn.addEventListener("click", function () {
+  healthyCount--;
+  container.removeChild(container.lastElementChild);
+  array.pop();
+})
