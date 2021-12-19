@@ -5,14 +5,107 @@ let addPersonBtn = document.getElementById("addPerson");
 let addInfectedPersonBtn = document.getElementById("addInfectedPerson");
 let removePersonBtn = document.getElementById("removePerson");
 export let healthyCount = 0;
-let infectedCount = 0;
 var array = [];
 let ax,ay;
 let bx,by;
 var id = 0;
-var bool = false;
-let transmitionRate;
+var transmissionRate = 0;
+let valueConvert = 0;
 
+//Sliders
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("value");
+
+var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("value2");
+
+var slider3 = document.getElementById("myRange3");
+var output3 = document.getElementById("value3");
+
+
+output.innerHTML = slider.value;
+
+slider.oninput = function (){
+  output.innerHTML = this.value;
+}
+
+
+slider.addEventListener("input", function (){
+  var x = slider.value*9;
+  var color = 'linear-gradient(90deg, rgb(117,252,117)' + x + '%, rgb(214,214,214)' + x + '%)';
+  slider.style.background = color;
+})
+
+output2.innerHTML = slider2.value;
+
+slider2.oninput = function (){
+  output2.innerHTML = this.value;
+}
+
+
+slider2.addEventListener("input", function (){
+  var x = slider2.value*9;
+  var color2 = 'linear-gradient(90deg, rgb(255,0,0)' + x + '%, rgb(214,214,214)' + x + '%)';
+  slider2.style.background = color2;
+})
+
+output3.innerHTML = slider3.value;
+
+slider3.oninput = function (){
+  output3.innerHTML = this.value;
+}
+
+
+slider3.addEventListener("input", function (){
+  var x = slider3.value;
+  var color3 = 'linear-gradient(90deg, rgb(255,127,80)' + x + '%, rgb(214,214,214)' + x + '%)';
+  slider3.style.background = color3;
+})
+
+
+
+function transmissionRateHandler(){
+  transmissionRate = Math.floor(Math.random()*9);
+}
+
+setInterval(transmissionRateHandler, 1000);
+
+
+function getTransmissionRate(){
+  switch(true){
+    case (slider3.value<=10):
+      valueConvert = 1;
+      break;
+    case (slider3.value<=20):
+      valueConvert = 2;
+      break;
+    case (slider3.value<=30):
+      valueConvert = 3;
+      break;
+    case (slider3.value<=40):
+      valueConvert = 4;
+      break;
+    case (slider3.value<=50):
+      valueConvert = 5;
+      break;
+    case (slider3.value<=60):
+      valueConvert = 6;
+      break;
+    case (slider3.value<=70):
+      valueConvert = 7;
+      break;
+    case (slider3.value<=80):
+      valueConvert = 8;
+      break;
+    case (slider3.value<=90):
+      valueConvert = 9;
+      break;
+    case (slider3.value<=100):
+      valueConvert = 10;
+      break;
+  }
+}
 
 function createElem(){
   let div = document.createElement("div");
@@ -29,7 +122,6 @@ function createElem(){
   div.id = id;
   id++;
 
-  //console.log(parseInt(div.id));
 
   container.appendChild(div);
 
@@ -62,8 +154,6 @@ function createElemInfected(){
 
 
 function randomMovement(div) {
-
-  //console.log(div.style.background)
 
   let randomNumber = Math.floor(Math.random() * 265);
   let randomNumber2 = Math.floor(Math.random() * 465);
@@ -107,7 +197,6 @@ function randomMovement(div) {
     let xDist = x2 - x1;
     let yDist = y2 - y1;
 
-    //console.log(x1 + " " + x2 + " " + y1 + " " + y2);
 
     return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
   }
@@ -115,64 +204,29 @@ function randomMovement(div) {
   function collision() {
 
   //setTimout le tmps que tout se place
-    if (array.length >= 2) {
-    array.map(e => {
-          for (let i = 0; i < array.length; i++) {
-            if(e.id !== array[i].id){
-              if (getDistance(parseInt(e.style.left), parseInt(array[i].style.left), parseInt(e.style.top), parseInt(array[i].style.top)) < 25 && (e.style.background !== array[i].style.background)) {
-                  array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-                  e.style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-                  healthyCount--;
-              }
-            }
-          }
-        }
-    )
-    }
-
-    /*
-  for(let i=1; i<array.length;i++){
-
-    let lastElem = array.length;
-
-    if (array.length >= 2) {
-      if (getDistance(parseInt(array[lastElem-1].style.left), parseInt(array[i].style.left), parseInt(array[lastElem-1].style.top), parseInt(array[i].style.top)) < 25) {
-        array[lastElem-1].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-        array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-      }
-    }
-  }
-  */
-
-
-
-/*
     setTimeout(() => {
       if (array.length >= 2) {
-        if (getDistance(parseInt(array[0].style.left), parseInt(array[1].style.left), parseInt(array[0].style.top), parseInt(array[1].style.top)) < 25) {
-          array[0].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-          array[1].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
-        }
+        array.map(e => {
+              for (let i = 0; i < array.length; i++) {
+                if(e.id !== array[i].id){
+                  if (getDistance(parseInt(e.style.left), parseInt(array[i].style.left), parseInt(e.style.top), parseInt(array[i].style.top)) < 25 && (e.style.background !== array[i].style.background)) {
+                    //collisionCount++;
+                    console.log(valueConvert);
+                    if(transmissionRate<valueConvert){
+                      array[i].style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+                      e.style.background = "radial-gradient(circle at " + 8 + "px " + 8 + "px, red, #000";
+                      healthyCount--;
+                    }
+                  }
+                }
+              }
+            }
+        )
       }
-    }, 1000)
-*/
+    },3000)
 
   }
 
-  /*
-    let xDist = x2 - x2;
-    let yDist = y2 - y1;
-
-    return Math.sqrt(Math.pow(xDistance,2) + Math.pow(yDistance,2));
-
-
-    if (getDistance(circle1.x, circle1.y, circle2.x, circle2.y)< circle1.radius + circle2.radius){
-      circle.color = 'red';
-      }
-      else{
-        circle.color = 'black';
-        }
-  */
 
 
   addPersonBtn.addEventListener("click", function () {
@@ -190,4 +244,24 @@ function randomMovement(div) {
     array.pop();
   })
 
+
+
+// form
+
+const form = document.getElementById('form');
+
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  getTransmissionRate();
+
+  for(let i=0; i < slider.value; i++){
+    createElem();
+  }
+
+  for(let i=0; i < slider2.value; i++){
+    createElemInfected();
+  }
+
+})
 

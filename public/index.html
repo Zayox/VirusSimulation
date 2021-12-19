@@ -23,12 +23,36 @@
       <button class="btn btn-danger" id="addInfectedPerson">Add an infected person</button>
       <button class="btn btn-dark" id="removePerson">Remove person</button>
     </div>
+
+
+    <form id="form">
+      <div class="slideContainer">
+        <h5>Safe person value: </h5>
+        <input type="range" min="1" max="10" value="1" id="myRange" class="slider">
+        <p>Value: <span id="value"></span></p>
+      </div>
+
+      <div class="slideContainer2">
+        <h5>Infected person value: </h5>
+        <input type="range" min="1" max="10" value="1" id="myRange2" class="slider">
+        <p>Value: <span id="value2"></span></p>
+      </div>
+
+      <div class="slideContainer3">
+        <h5>Transmission rate: </h5>
+        <input type="range" min="1" max="100" value="1" id="myRange3" class="slider">
+        <p>Value: <span id="value3"></span>%</p>
+      </div>
+
+      <button type="submit" class="btn btn-success" id="validate">Validate</button>
+    </form>
+
+
   </div>
 
   <div class="chart">
     <canvas id="myChart" height="150px"></canvas>
   </div>
-
 
 
 

@@ -67,15 +67,15 @@ const ChartC = () => {
     let i = 2;
 
 
-
     setInterval(() => {
 
-        zoz.destroy();
-        labels.push(i);
-        i+=2;
-        data.datasets[0].data.push(healthyCount);
-        zoz = new Chart(ctx, config);
-
+        if(healthyCount !== 0){
+            zoz.destroy();
+            labels.push(i);
+            i+=2;
+            data.datasets[0].data.push(healthyCount);
+            zoz = new Chart(ctx, config);
+        }
 
     }, 2000);
 
