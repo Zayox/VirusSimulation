@@ -1,0 +1,21 @@
+@media screen and (max-width: 1600px){
+
+    .slideContainer{
+        top: 13vh;
+    }
+
+    .slideContainer2{
+        top: 25vh;
+    }
+
+    .slideContainer3{
+        top: 37vh;
+    }
+
+
+    #validate{
+        top:52vh;
+    }
+
+
+}

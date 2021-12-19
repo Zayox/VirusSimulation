@@ -102,7 +102,7 @@ h1{
 .slideContainer{
   position: absolute;
   width:15%;
-  top: 13vh;
+  top: 3vh;
   left: 10vw;
 }
 
@@ -140,7 +140,7 @@ h1{
 .slideContainer2{
   position: absolute;
   width:15%;
-  top: 25vh;
+  top: 15vh;
   left: 10vw;
 }
 
@@ -168,7 +168,7 @@ h1{
 .slideContainer3{
   position: absolute;
   width:15%;
-  top: 37vh;
+  top: 27vh;
   left: 10vw;
 }
 
@@ -195,7 +195,7 @@ h1{
 
 #validate{
   position: absolute;
-  top:52vh;
+  top:38vh;
   left: 10vw;
 }
 
